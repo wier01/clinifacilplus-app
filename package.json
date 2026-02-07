@@ -1,4 +1,4 @@
-﻿{
+{
     "name":  "app-template",
     "version":  "1.0.0",
     "private":  true,
@@ -70,7 +70,8 @@
                          "react-native-worklets":  "0.5.1",
                          "superjson":  "^1.13.3",
                          "tailwind-merge":  "^2.6.0",
-                         "zod":  "^4.2.1"
+                         "zod":  "^4.2.1",
+                         "react-native-css-interop":  "^0.2.1"
                      },
     "devDependencies":  {
                             "@expo/ngrok":  "^4.1.3",
