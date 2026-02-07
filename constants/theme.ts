@@ -36,3 +36,5 @@ export const Colors: Record<ColorScheme, ThemeColorPalette> = {
     danger: "#F87171",
   },
 };
+
+export const SchemeColors = Colors;
