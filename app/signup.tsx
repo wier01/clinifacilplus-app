@@ -74,7 +74,7 @@ export default function SignupScreen() {
       <ScrollView contentContainerStyle={{ paddingBottom: 64, paddingTop: 20 }}>
         <View style={containerStyle}>
           <View
-            className="mx-5 rounded-3xl p-6 mb-6"
+            className="mx-5 rounded-3xl p-6 mb-8"
             style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}
           >
             <View className="flex-row items-center mb-3">
@@ -103,7 +103,7 @@ export default function SignupScreen() {
             </Text>
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
               Dados da clínica
             </Text>
@@ -137,7 +137,7 @@ export default function SignupScreen() {
             />
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
               Especialidade principal
             </Text>
@@ -156,7 +156,7 @@ export default function SignupScreen() {
             />
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
               Endereço
             </Text>
@@ -199,7 +199,7 @@ export default function SignupScreen() {
             />
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
               Sobre a clínica
             </Text>
@@ -215,7 +215,7 @@ export default function SignupScreen() {
             />
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
               Dados do administrador
             </Text>
