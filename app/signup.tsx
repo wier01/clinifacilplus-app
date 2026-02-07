@@ -71,8 +71,61 @@ export default function SignupScreen() {
 
   return (
     <ScreenContainer>
-      <ScrollView contentContainerStyle={{ paddingBottom: 64, paddingTop: 20 }}>
-        <View style={containerStyle}>
+      <View style={{ flex: 1, backgroundColor: colors.background, overflow: "hidden" }}>
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            top: -120,
+            right: -140,
+            width: 320,
+            height: 320,
+            borderRadius: 999,
+            backgroundColor: "rgba(79,139,255,0.10)",
+          }}
+        />
+        <Text
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            top: 140,
+            right: -40,
+            fontSize: 68,
+            fontWeight: "800",
+            color: "rgba(79,139,255,0.07)",
+            transform: [{ rotate: "-8deg" }],
+          }}
+        >
+          Clinifácil Plus
+        </Text>
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            bottom: 40,
+            left: -120,
+            width: 260,
+            height: 260,
+            borderRadius: 999,
+            backgroundColor: "rgba(16,185,129,0.08)",
+          }}
+        />
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            top: 120,
+            left: "20%",
+            width: 220,
+            height: 220,
+            borderRadius: 999,
+            borderWidth: 2,
+            borderColor: "rgba(79,139,255,0.12)",
+          }}
+        />
+
+        <ScrollView contentContainerStyle={{ paddingBottom: 84, paddingTop: 36 }}>
+          <View style={containerStyle}>
           <View
             className="mx-5 rounded-3xl p-6 mb-8"
             style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}
@@ -86,7 +139,7 @@ export default function SignupScreen() {
                 <Text style={{ color: colors.text, fontWeight: "700" }}>Voltar</Text>
               </Pressable>
 
-              <Text className="text-[22px] font-extrabold flex-1" style={{ color: colors.text }}>
+              <Text className="text-[22px] font-extrabold flex-1" style={{ color: colors.text, lineHeight: 30 }}>
                 Criar conta
               </Text>
             </View>
@@ -98,13 +151,13 @@ export default function SignupScreen() {
               <Text style={{ color: "#0F766E", fontWeight: "700", fontSize: 12 }}>Cadastro rápido</Text>
             </View>
 
-            <Text className="mt-4 text-[13px] leading-5" style={{ color: colors.muted }}>
+            <Text className="mt-4 text-[13px] leading-7" style={{ color: colors.muted }}>
               Preencha os dados para criar sua clínica e começar a testar.
             </Text>
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
+          <View className="mx-5 rounded-3xl p-6 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+            <Text className="text-[15px] font-bold leading-8" style={{ color: colors.text }}>
               Dados da clínica
             </Text>
 
@@ -113,8 +166,8 @@ export default function SignupScreen() {
               onChangeText={setClinicName}
               placeholder="Nome da clínica"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
             />
 
             <TextInput
@@ -122,8 +175,8 @@ export default function SignupScreen() {
               onChangeText={setPhone}
               placeholder="Telefone"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
               keyboardType="phone-pad"
             />
 
@@ -132,17 +185,17 @@ export default function SignupScreen() {
               onChangeText={setCnpj}
               placeholder="CNPJ (opcional)"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
             />
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
+          <View className="mx-5 rounded-3xl p-6 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+            <Text className="text-[15px] font-bold leading-8" style={{ color: colors.text }}>
               Especialidade principal
             </Text>
 
-            <Text className="text-[12px] mt-2 leading-5" style={{ color: colors.muted }}>
+            <Text className="text-[12px] mt-4 leading-7" style={{ color: colors.muted }}>
               Informe a principal área de atuação (ex.: Fisioterapia, Ortopedia, Pediatria).
             </Text>
 
@@ -151,13 +204,13 @@ export default function SignupScreen() {
               onChangeText={setSpecialty}
               placeholder="Digite a especialidade"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
             />
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
+          <View className="mx-5 rounded-3xl p-6 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+            <Text className="text-[15px] font-bold leading-8" style={{ color: colors.text }}>
               Endereço
             </Text>
 
@@ -166,26 +219,26 @@ export default function SignupScreen() {
               onChangeText={setAddress}
               placeholder="Rua, número, bairro"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
             />
 
-            <View className="flex-row mt-4">
+            <View className="flex-row mt-6">
               <TextInput
                 value={city}
                 onChangeText={setCity}
                 placeholder="Cidade"
                 placeholderTextColor={colors.muted}
-                className="flex-1 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10 mr-2"
-                style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+                className="flex-1 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10 mr-2"
+                style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
               />
               <TextInput
                 value={state}
                 onChangeText={setState}
                 placeholder="UF"
                 placeholderTextColor={colors.muted}
-                className="w-20 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-                style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+                className="w-20 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+                style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
               />
             </View>
 
@@ -194,13 +247,13 @@ export default function SignupScreen() {
               onChangeText={setPostalCode}
               placeholder="CEP"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
             />
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
+          <View className="mx-5 rounded-3xl p-6 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+            <Text className="text-[15px] font-bold leading-8" style={{ color: colors.text }}>
               Sobre a clínica
             </Text>
 
@@ -209,14 +262,14 @@ export default function SignupScreen() {
               onChangeText={setDescription}
               placeholder="Breve descrição (opcional)"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, minHeight: 110 }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, minHeight: 150, lineHeight: 22 }}
               multiline
             />
           </View>
 
-          <View className="mx-5 rounded-3xl p-6 mb-8" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[15px] font-bold leading-6" style={{ color: colors.text }}>
+          <View className="mx-5 rounded-3xl p-6 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+            <Text className="text-[15px] font-bold leading-8" style={{ color: colors.text }}>
               Dados do administrador
             </Text>
 
@@ -225,8 +278,8 @@ export default function SignupScreen() {
               onChangeText={setAdminName}
               placeholder="Seu nome"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
             />
 
             <TextInput
@@ -234,8 +287,8 @@ export default function SignupScreen() {
               onChangeText={setEmail}
               placeholder="Email"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
               autoCapitalize="none"
               keyboardType="email-address"
             />
@@ -245,8 +298,8 @@ export default function SignupScreen() {
               onChangeText={setPassword}
               placeholder="Senha"
               placeholderTextColor={colors.muted}
-              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+              className="mt-6 rounded-xl px-4 py-[20px] text-[15px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, lineHeight: 22 }}
               secureTextEntry
             />
           </View>
@@ -262,15 +315,16 @@ export default function SignupScreen() {
             />
           </View>
 
-          <View className="mt-5 mx-5">
+          <View className="mt-8 mx-5">
             <Pressable onPress={() => router.push("/login")}>
-              <Text style={{ color: colors.text, fontWeight: "700", lineHeight: 22 }}>
+              <Text style={{ color: colors.text, fontWeight: "700", lineHeight: 26 }}>
                 Já tem conta? <Text style={{ color: primary }}>Entrar</Text>
               </Text>
             </Pressable>
           </View>
         </View>
       </ScrollView>
+    </View>
     </ScreenContainer>
   );
 }
