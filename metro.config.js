@@ -1,9 +1,12 @@
-﻿const path = require("path");
+﻿const fs = require("fs");
+const path = require("path");
 const { getDefaultConfig } = require("expo/metro-config");
 const { withNativeWind } = require("nativewind/metro");
 
 // Force nativewind cache inside the project so Metro can read it in CI.
-process.env.CSS_INTEROP_CACHE_DIR = path.join(__dirname, ".cache", "nativewind");
+const cacheDir = path.join(__dirname, ".cache", "nativewind");
+process.env.CSS_INTEROP_CACHE_DIR = cacheDir;
+fs.mkdirSync(cacheDir, { recursive: true });
 
 const config = getDefaultConfig(__dirname);
 config.watchFolders = [path.join(__dirname, ".cache")];
