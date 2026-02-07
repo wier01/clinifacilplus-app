@@ -142,7 +142,7 @@ export default function SignupScreen() {
                 <Text style={{ color: colors.text, fontWeight: "700" }}>Voltar</Text>
               </Pressable>
 
-              <Text className="text-[48px] font-extrabold flex-1" style={{ color: colors.text, lineHeight: 66 }}>
+              <Text className="text-[48px] font-extrabold flex-1" style={{ color: colors.text, lineHeight: 66, fontWeight: "800" }}>
                 Criar conta
               </Text>
             </View>
@@ -160,7 +160,7 @@ export default function SignupScreen() {
           </View>
 
           <View className="mx-6 rounded-3xl p-8 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text }}>
+            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text, fontWeight: "800" }}>
               Dados da clínica
             </Text>
 
@@ -194,7 +194,7 @@ export default function SignupScreen() {
           </View>
 
           <View className="mx-6 rounded-3xl p-8 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text }}>
+            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text, fontWeight: "800" }}>
               Especialidade principal
             </Text>
 
@@ -213,7 +213,7 @@ export default function SignupScreen() {
           </View>
 
           <View className="mx-6 rounded-3xl p-8 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text }}>
+            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text, fontWeight: "800" }}>
               Endereço
             </Text>
 
@@ -256,7 +256,7 @@ export default function SignupScreen() {
           </View>
 
           <View className="mx-6 rounded-3xl p-8 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text }}>
+            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text, fontWeight: "800" }}>
               Sobre a clínica
             </Text>
 
@@ -272,7 +272,7 @@ export default function SignupScreen() {
           </View>
 
           <View className="mx-6 rounded-3xl p-8 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text }}>
+            <Text className="text-[33px] font-bold leading-[60px]" style={{ color: colors.text, fontWeight: "800" }}>
               Dados do administrador
             </Text>
 
