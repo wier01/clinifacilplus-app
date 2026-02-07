@@ -1,4 +1,4 @@
-// Load environment variables with proper priority (system > .env)
+﻿// Load environment variables with proper priority (system > .env)
 require("./scripts/load-env.cjs");
 
 import type { ExpoConfig } from "expo/config";
@@ -13,8 +13,8 @@ const schemeFromBundleId = `manus${timestamp}`;
 
 const env = {
   // App branding - update these values directly (do not use env vars)
-  appName: "Clínica CRM",
-  appSlug: "{{project_name}}",
+  appName: "Clinifácil Plus",
+  appSlug: "clinifacilplus",
   // S3 URL of the app logo - set this to the URL returned by generate_image when creating custom logo
   // Leave empty to use the default icon from assets/images/icon.png
   logoUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663275614780/FThOIFSJmxNUyORI.png",
@@ -109,3 +109,4 @@ const config: ExpoConfig = {
 };
 
 export default config;
+
