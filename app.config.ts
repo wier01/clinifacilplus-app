@@ -1,22 +1,14 @@
-﻿// Load environment variables with proper priority (system > .env)
-require("./scripts/load-env.cjs");
+﻿require("./scripts/load-env.cjs");
 
 import type { ExpoConfig } from "expo/config";
 
-// Bundle ID format: space.manus.<project_name_dots>.<timestamp>
-// e.g., "my-app" created at 2024-01-15 10:30:45 -> "space.manus.my.app.t20240115103045"
 const bundleId = "space.manus.clinica.crm.mobile.t20260102195729";
-// Extract timestamp from bundle ID and prefix with "manus" for deep link scheme
-// e.g., "space.manus.my.app.t20240115103045" -> "manus20240115103045"
 const timestamp = bundleId.split(".").pop()?.replace(/^t/, "") ?? "";
 const schemeFromBundleId = `manus${timestamp}`;
 
 const env = {
-  // App branding - update these values directly (do not use env vars)
   appName: "Clinifácil Plus",
   appSlug: "clinifacilplus",
-  // S3 URL of the app logo - set this to the URL returned by generate_image when creating custom logo
-  // Leave empty to use the default icon from assets/images/icon.png
   logoUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663275614780/FThOIFSJmxNUyORI.png",
   scheme: schemeFromBundleId,
   iosBundleId: bundleId,
@@ -27,6 +19,7 @@ const config: ExpoConfig = {
   name: env.appName,
   slug: env.appSlug,
   version: "1.0.0",
+  platforms: ["ios", "android", "web"],
   orientation: "portrait",
   icon: "./assets/images/icon.png",
   scheme: env.scheme,
@@ -51,12 +44,7 @@ const config: ExpoConfig = {
       {
         action: "VIEW",
         autoVerify: true,
-        data: [
-          {
-            scheme: env.scheme,
-            host: "*",
-          },
-        ],
+        data: [{ scheme: env.scheme, host: "*" }],
         category: ["BROWSABLE", "DEFAULT"],
       },
     ],
@@ -70,9 +58,7 @@ const config: ExpoConfig = {
     "expo-router",
     [
       "expo-audio",
-      {
-        microphonePermission: "Allow $(PRODUCT_NAME) to access your microphone.",
-      },
+      { microphonePermission: "Allow $(PRODUCT_NAME) to access your microphone." },
     ],
     [
       "expo-video",
@@ -88,18 +74,12 @@ const config: ExpoConfig = {
         imageWidth: 200,
         resizeMode: "contain",
         backgroundColor: "#ffffff",
-        dark: {
-          backgroundColor: "#000000",
-        },
+        dark: { backgroundColor: "#000000" },
       },
     ],
     [
       "expo-build-properties",
-      {
-        android: {
-          buildArchs: ["armeabi-v7a", "arm64-v8a"],
-        },
-      },
+      { android: { buildArchs: ["armeabi-v7a", "arm64-v8a"] } },
     ],
   ],
   experiments: {
@@ -109,6 +89,3 @@ const config: ExpoConfig = {
 };
 
 export default config;
-
-
-
