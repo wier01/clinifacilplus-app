@@ -6,7 +6,6 @@ import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
 import { apiCall, setAuthToken } from "@/lib/_core/api";
 import { useAuth } from "@/hooks/use-auth";
-import { SPECIALTIES, type SpecialtyValue } from "@/lib/specialties";
 import { ModernButton } from "@/components/modern-button";
 
 export default function SignupScreen() {
@@ -22,7 +21,7 @@ export default function SignupScreen() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [cnpj, setCnpj] = useState("");
-  const [specialty, setSpecialty] = useState<SpecialtyValue | "">("");
+  const [specialty, setSpecialty] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -72,10 +71,10 @@ export default function SignupScreen() {
 
   return (
     <ScreenContainer>
-      <ScrollView contentContainerStyle={{ paddingBottom: 48, paddingTop: 12 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 64, paddingTop: 20 }}>
         <View style={containerStyle}>
           <View
-            className="mx-4 rounded-3xl p-5 mb-4"
+            className="mx-5 rounded-3xl p-6 mb-6"
             style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}
           >
             <View className="flex-row items-center mb-3">
@@ -93,18 +92,18 @@ export default function SignupScreen() {
             </View>
 
             <View
-              className="self-start px-3 py-1 rounded-full"
+              className="self-start px-3 py-1.5 rounded-full"
               style={{ backgroundColor: "rgba(16,185,129,0.12)", borderWidth: 1, borderColor: "rgba(16,185,129,0.35)" }}
             >
               <Text style={{ color: "#0F766E", fontWeight: "700", fontSize: 12 }}>Cadastro rápido</Text>
             </View>
 
-            <Text className="mt-3 text-[13px]" style={{ color: colors.muted }}>
+            <Text className="mt-4 text-[13px]" style={{ color: colors.muted }}>
               Preencha os dados para criar sua clínica e começar a testar.
             </Text>
           </View>
 
-          <View className="mx-4 rounded-3xl p-5 mb-4" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold" style={{ color: colors.text }}>
               Dados da clínica
             </Text>
@@ -114,7 +113,7 @@ export default function SignupScreen() {
               onChangeText={setClinicName}
               placeholder="Nome da clínica"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
               style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
             />
 
@@ -123,7 +122,7 @@ export default function SignupScreen() {
               onChangeText={setPhone}
               placeholder="Telefone"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
               style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
               keyboardType="phone-pad"
             />
@@ -133,46 +132,31 @@ export default function SignupScreen() {
               onChangeText={setCnpj}
               placeholder="CNPJ (opcional)"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
               style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
             />
           </View>
 
-          <View className="mx-4 rounded-3xl p-5 mb-4" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold" style={{ color: colors.text }}>
               Especialidade principal
             </Text>
 
             <Text className="text-[12px] mt-1" style={{ color: colors.muted }}>
-              Ajuda na personalização inicial do atendimento.
+              Informe a principal área de atuação (ex.: Fisioterapia, Ortopedia, Pediatria).
             </Text>
 
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
-              {SPECIALTIES.map((item) => {
-                const active = specialty === item.value;
-                return (
-                  <Pressable
-                    key={item.value}
-                    onPress={() => setSpecialty(item.value)}
-                    style={{
-                      paddingHorizontal: 12,
-                      paddingVertical: 8,
-                      borderRadius: 999,
-                      borderWidth: 1,
-                      borderColor: active ? primary : colors.border,
-                      backgroundColor: active ? "rgba(79,139,255,0.14)" : "rgba(0,0,0,0.02)",
-                    }}
-                  >
-                    <Text style={{ fontWeight: "800", color: active ? primary : colors.text }}>
-                      {item.label}
-                    </Text>
-                  </Pressable>
-                );
-              })}
-            </View>
+            <TextInput
+              value={specialty}
+              onChangeText={setSpecialty}
+              placeholder="Digite a especialidade"
+              placeholderTextColor={colors.muted}
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
+            />
           </View>
 
-          <View className="mx-4 rounded-3xl p-5 mb-4" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold" style={{ color: colors.text }}>
               Endereço
             </Text>
@@ -182,17 +166,17 @@ export default function SignupScreen() {
               onChangeText={setAddress}
               placeholder="Rua, número, bairro"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
               style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
             />
 
-            <View className="flex-row mt-3">
+            <View className="flex-row mt-4">
               <TextInput
                 value={city}
                 onChangeText={setCity}
                 placeholder="Cidade"
                 placeholderTextColor={colors.muted}
-                className="flex-1 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10 mr-2"
+                className="flex-1 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10 mr-2"
                 style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
               />
               <TextInput
@@ -200,7 +184,7 @@ export default function SignupScreen() {
                 onChangeText={setState}
                 placeholder="UF"
                 placeholderTextColor={colors.muted}
-                className="w-20 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+                className="w-20 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
                 style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
               />
             </View>
@@ -210,12 +194,12 @@ export default function SignupScreen() {
               onChangeText={setPostalCode}
               placeholder="CEP"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
               style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
             />
           </View>
 
-          <View className="mx-4 rounded-3xl p-5 mb-4" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold" style={{ color: colors.text }}>
               Sobre a clínica
             </Text>
@@ -225,13 +209,13 @@ export default function SignupScreen() {
               onChangeText={setDescription}
               placeholder="Breve descrição (opcional)"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
-              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, minHeight: 90 }}
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
+              style={{ color: colors.text, borderWidth: 1, borderColor: colors.border, minHeight: 110 }}
               multiline
             />
           </View>
 
-          <View className="mx-4 rounded-3xl p-5 mb-4" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+          <View className="mx-5 rounded-3xl p-6 mb-6" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text className="text-[15px] font-bold" style={{ color: colors.text }}>
               Dados do administrador
             </Text>
@@ -241,7 +225,7 @@ export default function SignupScreen() {
               onChangeText={setAdminName}
               placeholder="Seu nome"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
               style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
             />
 
@@ -250,7 +234,7 @@ export default function SignupScreen() {
               onChangeText={setEmail}
               placeholder="Email"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
               style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
               autoCapitalize="none"
               keyboardType="email-address"
@@ -261,24 +245,24 @@ export default function SignupScreen() {
               onChangeText={setPassword}
               placeholder="Senha"
               placeholderTextColor={colors.muted}
-              className="mt-3 rounded-xl px-3 py-3 text-[14px] bg-black/5 dark:bg-white/10"
+              className="mt-4 rounded-xl px-4 py-4 text-[14px] bg-black/5 dark:bg-white/10"
               style={{ color: colors.text, borderWidth: 1, borderColor: colors.border }}
               secureTextEntry
             />
           </View>
 
-          <View className="mx-4">
+          <View className="mx-5">
             <ModernButton
               title={loading ? "Criando..." : "Criar conta"}
               variant="primary"
               onPress={onSignup}
               disabled={loading}
-              style={{ paddingVertical: 14 }}
+              style={{ paddingVertical: 16 }}
               textStyle={{ fontSize: 15 }}
             />
           </View>
 
-          <View className="mt-4 mx-4">
+          <View className="mt-5 mx-5">
             <Pressable onPress={() => router.push("/login")}>
               <Text style={{ color: colors.text, fontWeight: "700" }}>
                 Já tem conta? <Text style={{ color: primary }}>Entrar</Text>
