@@ -67,14 +67,15 @@ export function ScreenContainer({
       {withBackground ? (
         <Image
           source={{ uri: backgroundUri }}
-          style={{ position: "absolute", inset: 0, opacity: 0.85 }}
+          style={{ position: "absolute", inset: 0, opacity: 0.85, zIndex: 0 }}
           contentFit="cover"
+          pointerEvents="none"
         />
       ) : null}
       <SafeAreaView
         edges={edges}
         className={cn("flex-1", safeAreaClassName)}
-        style={style}
+        style={[{ zIndex: 1 }, style]}
       >
         <View className={cn("flex-1", className)}>{children}</View>
       </SafeAreaView>
