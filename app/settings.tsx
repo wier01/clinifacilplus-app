@@ -230,6 +230,14 @@ export default function SettingsScreen({ embedded = false }: { embedded?: boolea
   }
 
   async function onLogout() {
+    if (Platform.OS === "web") {
+      const ok = window.confirm("Deseja sair da conta?");
+      if (!ok) return;
+      await clearAuthToken();
+      await auth.refresh();
+      router.replace("/login");
+      return;
+    }
     Alert.alert("Sair", "Deseja sair da conta?", [
       { text: "Cancelar", style: "cancel" },
       {
