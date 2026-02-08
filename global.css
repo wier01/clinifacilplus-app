@@ -1,1 +1,17 @@
 /* NativeWind base */
+html,
+body,
+#root,
+#expo-root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: auto;
+}
+
+#root,
+#expo-root {
+  overflow: auto;
+}
