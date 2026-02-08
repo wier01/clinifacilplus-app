@@ -1,4 +1,4 @@
-import { View, type ViewProps } from "react-native";
+import { Platform, ScrollView, View, type ViewProps } from "react-native";
 import { SafeAreaView, type Edge } from "react-native-safe-area-context";
 import { Image } from "expo-image";
 import { Asset } from "expo-asset";
@@ -55,6 +55,7 @@ export function ScreenContainer({
   ...props
 }: ScreenContainerProps) {
   const backgroundUri = Asset.fromModule(require("../assets/backgrounds/signup-wave.svg")).uri;
+  const isWeb = Platform.OS === "web";
   return (
     <View
       className={cn(
@@ -77,7 +78,16 @@ export function ScreenContainer({
         className={cn("flex-1", safeAreaClassName)}
         style={[{ zIndex: 1 }, style]}
       >
-        <View className={cn("flex-1", className)}>{children}</View>
+        {isWeb ? (
+          <ScrollView
+            className={cn("flex-1", className)}
+            contentContainerStyle={{ minHeight: "100%" }}
+          >
+            {children}
+          </ScrollView>
+        ) : (
+          <View className={cn("flex-1", className)}>{children}</View>
+        )}
       </SafeAreaView>
     </View>
   );
