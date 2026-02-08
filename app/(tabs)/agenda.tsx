@@ -1,6 +1,8 @@
 ﻿// clinica-crm-mobile/app/(tabs)/agenda.tsx
 import { useMemo, useState } from "react";
 import { ActivityIndicator, FlatList, Modal, Pressable, Text, TextInput, View } from "react-native";
+import { Image } from "expo-image";
+import { Asset } from "expo-asset";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ScreenContainer } from "@/components/screen-container";
 import { IconSymbol } from "@/components/ui/icon-symbol";
@@ -151,6 +153,7 @@ export default function AgendaScreen() {
   const [blockReason, setBlockReason] = useState("Almoço");
 
   const [insuranceDays, setInsuranceDays] = useState<Record<number, string | null>>({});
+  const backgroundUri = Asset.fromModule(require("../../assets/backgrounds/signup-wave.svg")).uri;
 
   const doctorsQ = useQuery({
     queryKey: ["doctors"],
@@ -459,20 +462,25 @@ export default function AgendaScreen() {
     doctorsQ.isLoading || settingsQ.isLoading || appointmentsQ.isLoading || blocksQ.isLoading;
 
   return (
-    <ScreenContainer className="bg-[#F7F8FB]">
-      <View className="px-4 pt-4">
-        <View className="flex-row items-center justify-between mb-3">
-          <Text className="text-base font-semibold text-[#0f172a]">Clínica CRM</Text>
+    <ScreenContainer className="bg-[#F2F7FB]">
+      <Image
+        source={{ uri: backgroundUri }}
+        style={{ position: "absolute", inset: 0, opacity: 0.85 }}
+        contentFit="cover"
+      />
+      <View className="px-6 pt-6">
+        <View className="flex-row items-center justify-between mb-4">
+          <Text className="text-[20px] font-black text-[#0f172a]">Clínica CRM</Text>
           <Pressable accessibilityLabel="Menu">
             <Text className="text-[18px] font-bold text-[#0f172a]">≡</Text>
           </Pressable>
         </View>
 
-        <View className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
+        <View className="rounded-[24px] border border-black/5 bg-white/90 p-5 shadow-sm">
           <View className="flex-row items-center justify-between">
             <View>
-              <Text className="text-[20px] font-semibold text-[#0f172a]">Agenda médica</Text>
-              <Text className="text-[12px] text-[#64748b]">Pacientes do dia</Text>
+              <Text className="text-[22px] font-black text-[#0f172a]">Agenda médica</Text>
+              <Text className="text-[13px] text-[#64748b] mt-1">Pacientes do dia</Text>
             </View>
             {String(auth.user?.role || "").toUpperCase() === "ADMIN" && (
               <Pressable onPress={() => setSettingsOpen(true)}>
@@ -482,13 +490,13 @@ export default function AgendaScreen() {
           </View>
 
           {doctors.length > 0 && (
-            <View className="flex-row gap-2 mt-3">
+            <View className="flex-row gap-2 mt-4">
               {doctors.map((doctor) => {
                 const active = doctor.id === doctorId;
                 return (
                   <Pressable
                     key={doctor.id}
-                    className="flex-1 px-4 py-2.5 rounded-2xl"
+                    className="flex-1 px-4 py-3 rounded-2xl"
                     style={{
                       borderWidth: 1,
                       borderColor: colors.border,
@@ -505,12 +513,12 @@ export default function AgendaScreen() {
             </View>
           )}
 
-          <View className="flex-row items-center justify-between mt-4">
+          <View className="flex-row items-center justify-between mt-5">
             <Pressable onPress={() => setDate(addMinutes(date, -24 * 60))} style={{ opacity: 1 }}>
               <IconSymbol name="arrow.left" size={24} color={colors.foreground} />
             </Pressable>
 
-            <Text className="text-lg font-semibold text-foreground">{formatHumanDate(date)}</Text>
+            <Text className="text-[18px] font-bold text-foreground">{formatHumanDate(date)}</Text>
 
             <Pressable onPress={() => setDate(addMinutes(date, 24 * 60))} style={{ opacity: 1 }}>
               <IconSymbol name="chevron.right" size={24} color={colors.foreground} />
@@ -518,11 +526,11 @@ export default function AgendaScreen() {
           </View>
 
           {selectedDoctor?.specialty ? (
-            <Text className="text-xs text-muted mt-2">{selectedDoctor.specialty}</Text>
+            <Text className="text-[12px] text-muted mt-3">{selectedDoctor.specialty}</Text>
           ) : null}
 
           {!!planName && (
-            <View className="mt-3 self-start rounded-full px-3 py-1" style={{ backgroundColor: "rgba(37,99,235,0.12)" }}>
+            <View className="mt-4 self-start rounded-full px-3 py-1.5" style={{ backgroundColor: "rgba(37,99,235,0.12)" }}>
               <Text style={{ fontSize: 12, fontWeight: "800", color: "#1E3A8A" }}>
                 Somente convênio: {planName}
               </Text>
@@ -541,7 +549,7 @@ export default function AgendaScreen() {
         <FlatList
           data={rows}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 120 }}
+          contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 12, paddingBottom: 140 }}
           ListEmptyComponent={
             <View className="flex-1 items-center justify-center p-6">
               <IconSymbol name="calendar.fill" size={64} color={colors.muted} />
@@ -556,7 +564,7 @@ export default function AgendaScreen() {
           renderItem={({ item }) => {
             if (item.kind === "HEADER") {
               return (
-                <View className="mt-3 mb-2">
+                <View className="mt-4 mb-2">
                   <View className="flex-row items-center gap-10">
                     <Text className="text-xs font-bold text-muted uppercase tracking-wider">
                       {item.title}
@@ -572,7 +580,7 @@ export default function AgendaScreen() {
               return (
                 <Pressable
                   onPress={() => openSchedule(slot.timeLabel)}
-                  className="rounded-2xl p-4 mb-3 border bg-white"
+                  className="rounded-2xl p-5 mb-3 border bg-white/90"
                   style={{ borderColor: "rgba(15,23,42,0.08)" }}
                 >
                   <View className="flex-row items-center">
@@ -604,7 +612,7 @@ export default function AgendaScreen() {
             if (slot.status === "BLOCKED") {
               return (
                 <View
-                  className="rounded-2xl p-4 mb-3 border"
+                  className="rounded-2xl p-5 mb-3 border"
                   style={{ borderColor: "rgba(239,68,68,0.18)", backgroundColor: "rgba(239,68,68,0.06)" }}
                 >
                   <View className="flex-row items-center">
@@ -638,7 +646,7 @@ export default function AgendaScreen() {
 
             return (
               <View
-                className="rounded-2xl p-4 mb-3 border"
+                className="rounded-2xl p-5 mb-3 border"
                 style={{ borderColor: "rgba(15,23,42,0.08)", backgroundColor: tone.bg }}
               >
                 <View className="flex-row items-center">

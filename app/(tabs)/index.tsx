@@ -1,5 +1,7 @@
 ﻿// clinica-crm-mobile/app/(tabs)/index.tsx
 import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
+import { Image } from "expo-image";
+import { Asset } from "expo-asset";
 import { useRouter } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import { ScreenContainer } from "@/components/screen-container";
@@ -45,86 +47,92 @@ export default function DashboardScreen() {
   const clinicLocation = [clinic?.city, clinic?.state].filter(Boolean).join(" • ");
   const clinicContact = [clinic?.phone, clinic?.address].filter(Boolean).join(" • ");
   const initials = getInitials(clinic?.name);
+  const backgroundUri = Asset.fromModule(require("../../assets/backgrounds/signup-wave.svg")).uri;
 
   return (
-    <ScreenContainer className="bg-[#F7F8FB]">
-      <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
+    <ScreenContainer className="bg-[#F2F7FB]">
+      <Image
+        source={{ uri: backgroundUri }}
+        style={{ position: "absolute", inset: 0, opacity: 0.85 }}
+        contentFit="cover"
+      />
+      <ScrollView contentContainerStyle={{ paddingBottom: 56 }}>
         <View style={{ width: "100%", maxWidth: 980, alignSelf: "center" }}>
-          <View className="px-4 pt-4">
+          <View className="px-6 pt-6">
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
               <View>
-                <Text style={{ color: "#0F2E66", fontWeight: "900", fontSize: 18 }}>Clínica CRM</Text>
-                <Text style={{ color: colors.muted, fontSize: 12 }}>Painel geral</Text>
+                <Text style={{ color: "#0F2E66", fontWeight: "900", fontSize: 24 }}>Clínica CRM</Text>
+                <Text style={{ color: colors.muted, fontSize: 14, marginTop: 2 }}>Painel geral • Visão premium</Text>
               </View>
               <Pressable
                 style={{
-                  paddingHorizontal: 12,
-                  paddingVertical: 8,
-                  borderRadius: 12,
+                  paddingHorizontal: 14,
+                  paddingVertical: 10,
+                  borderRadius: 14,
                   borderWidth: 1,
                   borderColor: "rgba(15,23,42,0.12)",
-                  backgroundColor: "white",
+                  backgroundColor: "rgba(255,255,255,0.9)",
                 }}
               >
-                <Text style={{ fontWeight: "900", color: "#0F2E66" }}>≡</Text>
+                <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>≡</Text>
               </Pressable>
             </View>
           </View>
 
           <View
-            className="mt-4 mx-4 rounded-3xl p-4"
+            className="mt-5 mx-6 rounded-[28px] p-5"
             style={{
               borderWidth: 1,
               borderColor: "rgba(15,23,42,0.08)",
-              backgroundColor: "white",
+              backgroundColor: "rgba(255,255,255,0.92)",
               overflow: "hidden",
             }}
           >
             <View
               style={{
-                height: 84,
-                borderRadius: 18,
+                height: 96,
+                borderRadius: 22,
                 backgroundColor: "rgba(30,64,175,0.12)",
                 marginBottom: 12,
               }}
             />
             <View style={{ position: "absolute", top: 24, left: 24, width: 54, height: 54, borderRadius: 18, backgroundColor: "white", alignItems: "center", justifyContent: "center", borderWidth: 1, borderColor: "rgba(15,23,42,0.08)" }}>
-              <Text style={{ fontWeight: "900", color: "#0F2E66" }}>{initials}</Text>
+              <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>{initials}</Text>
             </View>
 
             {isAuthenticated && user ? (
               <View style={{ marginLeft: 72 }}>
-                <Text style={{ fontSize: 16, fontWeight: "900", color: colors.text }} numberOfLines={2}>
+                <Text style={{ fontSize: 18, fontWeight: "900", color: colors.text }} numberOfLines={2}>
                   {clinicName}
                 </Text>
                 {clinicLocation ? (
-                  <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>{clinicLocation}</Text>
+                  <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>{clinicLocation}</Text>
                 ) : null}
                 {clinicContact ? (
-                  <Text style={{ color: colors.muted, fontSize: 12, marginTop: 2 }} numberOfLines={2}>
+                  <Text style={{ color: colors.muted, fontSize: 13, marginTop: 4 }} numberOfLines={2}>
                     {clinicContact}
                   </Text>
                 ) : null}
               </View>
             ) : (
-              <Text style={{ color: colors.text, fontWeight: "900" }}>Faça login para ver sua clínica</Text>
+              <Text style={{ color: colors.text, fontWeight: "900", fontSize: 16 }}>Faça login para ver sua clínica</Text>
             )}
 
             {clinicQ.isLoading ? (
               <View style={{ flexDirection: "row", alignItems: "center", marginTop: 8, gap: 8 }}>
                 <ActivityIndicator size="small" />
-                <Text style={{ color: colors.muted, fontSize: 12 }}>Carregando dados da clínica...</Text>
+                <Text style={{ color: colors.muted, fontSize: 13 }}>Carregando dados da clínica...</Text>
               </View>
             ) : null}
           </View>
 
-          <View className="mx-4 mt-4">
-            <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 14 }}>Pacientes do dia</Text>
-            <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>Agenda resumida do turno atual.</Text>
+          <View className="mx-6 mt-6">
+            <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>Pacientes do dia</Text>
+            <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>Agenda resumida do turno atual.</Text>
 
             <View
-              className="mt-3 rounded-2xl p-4"
-              style={{ borderWidth: 1, borderColor: "rgba(15,23,42,0.08)", backgroundColor: "white" }}
+              className="mt-4 rounded-2xl p-5"
+              style={{ borderWidth: 1, borderColor: "rgba(15,23,42,0.08)", backgroundColor: "rgba(255,255,255,0.92)" }}
             >
               {[{ time: "14:00", name: "Sem dados hoje" }].map((row, idx) => (
                 <View
@@ -133,14 +141,14 @@ export default function DashboardScreen() {
                     flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    paddingVertical: 10,
+                    paddingVertical: 12,
                     borderBottomWidth: idx === 0 ? 0 : 1,
                     borderBottomColor: "rgba(15,23,42,0.06)",
                   }}
                 >
                   <View>
-                    <Text style={{ fontWeight: "900", color: "#0F2E66" }}>{row.time}</Text>
-                    <Text style={{ color: colors.muted, fontSize: 12 }}>{row.name}</Text>
+                    <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>{row.time}</Text>
+                    <Text style={{ color: colors.muted, fontSize: 13, marginTop: 4 }}>{row.name}</Text>
                   </View>
                   <View style={{ width: 10, height: 10, borderRadius: 999, backgroundColor: "rgba(16,185,129,0.6)" }} />
                 </View>
@@ -148,19 +156,19 @@ export default function DashboardScreen() {
             </View>
           </View>
 
-          <View className="mx-4 mt-4">
+          <View className="mx-6 mt-6">
             <View
-              className="rounded-3xl p-4"
-              style={{ borderWidth: 1, borderColor: "rgba(15,23,42,0.08)", backgroundColor: "white" }}
+              className="rounded-3xl p-5"
+              style={{ borderWidth: 1, borderColor: "rgba(15,23,42,0.08)", backgroundColor: "rgba(255,255,255,0.92)" }}
             >
-              <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 14 }}>Pacientes por convênio</Text>
-              <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>Resumo dos últimos 30 dias.</Text>
+              <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>Pacientes por convênio</Text>
+              <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>Resumo dos últimos 30 dias.</Text>
 
-              <View style={{ alignItems: "center", marginTop: 16 }}>
+              <View style={{ alignItems: "center", marginTop: 20 }}>
                 <View
                   style={{
-                    width: 160,
-                    height: 160,
+                    width: 170,
+                    height: 170,
                     borderRadius: 999,
                     borderWidth: 18,
                     borderColor: "rgba(37,99,235,0.16)",
@@ -170,119 +178,119 @@ export default function DashboardScreen() {
                 >
                   <View
                     style={{
-                      width: 110,
-                      height: 110,
+                      width: 120,
+                      height: 120,
                       borderRadius: 999,
-                      backgroundColor: "white",
+                      backgroundColor: "rgba(255,255,255,0.95)",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
                   >
-                    <Text style={{ fontSize: 28, fontWeight: "900", color: "#0F2E66" }}>0</Text>
-                    <Text style={{ fontSize: 12, color: colors.muted }}>Pacientes</Text>
+                    <Text style={{ fontSize: 30, fontWeight: "900", color: "#0F2E66" }}>0</Text>
+                    <Text style={{ fontSize: 13, color: colors.muted, marginTop: 4 }}>Pacientes</Text>
                   </View>
                 </View>
               </View>
             </View>
           </View>
 
-          <View className="mx-4 mt-4">
+          <View className="mx-6 mt-6">
             <View
-              className="rounded-3xl p-4"
-              style={{ borderWidth: 1, borderColor: "rgba(15,23,42,0.08)", backgroundColor: "white" }}
+              className="rounded-3xl p-5"
+              style={{ borderWidth: 1, borderColor: "rgba(15,23,42,0.08)", backgroundColor: "rgba(255,255,255,0.92)" }}
             >
-              <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 14 }}>Duração do atendimento</Text>
-              <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>Média geral.</Text>
+              <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>Duração do atendimento</Text>
+              <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>Média geral.</Text>
 
-              <View style={{ flexDirection: "row", alignItems: "center", gap: 10, marginTop: 16 }}>
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 12, marginTop: 18 }}>
                 <View
                   style={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: 12,
+                    width: 48,
+                    height: 48,
+                    borderRadius: 14,
                     backgroundColor: "rgba(59,130,246,0.12)",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
-                  <Text style={{ color: "#1E3A8A", fontWeight: "900" }}>⏱</Text>
+                  <Text style={{ color: "#1E3A8A", fontWeight: "900", fontSize: 18 }}>⏱</Text>
                 </View>
-                <Text style={{ fontSize: 26, fontWeight: "900", color: "#0F2E66" }}>0 min</Text>
+                <Text style={{ fontSize: 28, fontWeight: "900", color: "#0F2E66" }}>0 min</Text>
               </View>
             </View>
           </View>
 
-          <View className="mx-4 mt-4">
-            <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 14 }}>Ações rápidas</Text>
-            <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>
+          <View className="mx-6 mt-6">
+            <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>Ações rápidas</Text>
+            <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>
               Acesse as áreas principais com um toque.
             </Text>
 
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10, marginTop: 12 }}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 16 }}>
               <Pressable
                 onPress={() => router.push("/(tabs)/inbox")}
                 style={{
                   flexBasis: "48%",
-                  padding: 14,
-                  borderRadius: 16,
+                  padding: 18,
+                  borderRadius: 18,
                   borderWidth: 1,
                   borderColor: "rgba(15,23,42,0.08)",
-                  backgroundColor: "white",
+                  backgroundColor: "rgba(255,255,255,0.92)",
                 }}
               >
-                <Text style={{ fontWeight: "900", color: "#0F2E66" }}>Inbox</Text>
-                <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>Mensagens e leads</Text>
+                <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>Inbox</Text>
+                <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>Mensagens e leads</Text>
               </Pressable>
 
               <Pressable
                 onPress={() => router.push("/(tabs)/agenda")}
                 style={{
                   flexBasis: "48%",
-                  padding: 14,
-                  borderRadius: 16,
+                  padding: 18,
+                  borderRadius: 18,
                   borderWidth: 1,
                   borderColor: "rgba(15,23,42,0.08)",
-                  backgroundColor: "white",
+                  backgroundColor: "rgba(255,255,255,0.92)",
                 }}
               >
-                <Text style={{ fontWeight: "900", color: "#0F2E66" }}>Agenda</Text>
-                <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>Atendimentos</Text>
+                <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>Agenda</Text>
+                <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>Atendimentos</Text>
               </Pressable>
 
               <Pressable
                 onPress={() => router.push("/(tabs)/prontuarios")}
                 style={{
                   flexBasis: "48%",
-                  padding: 14,
-                  borderRadius: 16,
+                  padding: 18,
+                  borderRadius: 18,
                   borderWidth: 1,
                   borderColor: "rgba(15,23,42,0.08)",
-                  backgroundColor: "white",
+                  backgroundColor: "rgba(255,255,255,0.92)",
                 }}
               >
-                <Text style={{ fontWeight: "900", color: "#0F2E66" }}>Prontuários</Text>
-                <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>Pacientes</Text>
+                <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>Prontuários</Text>
+                <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>Pacientes</Text>
               </Pressable>
 
               <Pressable
                 onPress={() => router.push("/settings")}
                 style={{
                   flexBasis: "48%",
-                  padding: 14,
-                  borderRadius: 16,
+                  padding: 18,
+                  borderRadius: 18,
                   borderWidth: 1,
                   borderColor: "rgba(15,23,42,0.08)",
-                  backgroundColor: "white",
+                  backgroundColor: "rgba(255,255,255,0.92)",
                 }}
               >
-                <Text style={{ fontWeight: "900", color: "#0F2E66" }}>Configurações</Text>
-                <Text style={{ color: colors.muted, fontSize: 12, marginTop: 4 }}>Conta e integração</Text>
+                <Text style={{ fontWeight: "900", color: "#0F2E66", fontSize: 16 }}>Configurações</Text>
+                <Text style={{ color: colors.muted, fontSize: 13, marginTop: 6 }}>Conta e integração</Text>
               </Pressable>
             </View>
           </View>
 
           {role === "ADMIN" ? (
-            <View className="mx-4 mt-4">
+            <View className="mx-6 mt-6">
               <ModernButton title="Onboarding" variant="primary" onPress={() => router.push("/onboarding")} />
             </View>
           ) : null}

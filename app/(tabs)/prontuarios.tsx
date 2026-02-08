@@ -1,6 +1,8 @@
 ﻿// clinica-crm-mobile/app/(tabs)/prontuarios.tsx
 import { useMemo, useState } from "react";
 import { ActivityIndicator, Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { Image } from "expo-image";
+import { Asset } from "expo-asset";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -76,6 +78,7 @@ export default function RecordsScreen() {
   const [formBirth, setFormBirth] = useState("");
   const [formSex, setFormSex] = useState<"M" | "F" | "O" | "">("");
   const [formError, setFormError] = useState<string | null>(null);
+  const backgroundUri = Asset.fromModule(require("../../assets/backgrounds/signup-wave.svg")).uri;
 
   const patientsQ = useQuery({
     queryKey: ["patients", q],
@@ -161,52 +164,44 @@ export default function RecordsScreen() {
   }
 
   return (
-    <ScreenContainer className="bg-[#F4F6F8]">
-      <View
-        pointerEvents="none"
-        style={{
-          position: "absolute",
-          top: -200,
-          left: -120,
-          right: -120,
-          height: 320,
-          backgroundColor: "rgba(37,99,235,0.10)",
-          borderBottomLeftRadius: 260,
-          borderBottomRightRadius: 260,
-        }}
+    <ScreenContainer className="bg-[#F2F7FB]">
+      <Image
+        source={{ uri: backgroundUri }}
+        style={{ position: "absolute", inset: 0, opacity: 0.85 }}
+        contentFit="cover"
       />
 
-      <View style={{ padding: 16, paddingBottom: 8 }}>
+      <View style={{ padding: 24, paddingBottom: 10 }}>
         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
           <View>
-            <Text style={{ fontSize: 24, fontWeight: "900", color: colors.text }}>Prontuários</Text>
-            <Text style={{ marginTop: 2, color: colors.muted, fontSize: 12 }}>
+            <Text style={{ fontSize: 26, fontWeight: "900", color: colors.text }}>Prontuários</Text>
+            <Text style={{ marginTop: 4, color: colors.muted, fontSize: 13 }}>
               {patients.length} pacientes • histórico clínico
             </Text>
           </View>
           <View
             style={{
               paddingHorizontal: 10,
-              paddingVertical: 6,
+              paddingVertical: 7,
               borderRadius: 999,
               backgroundColor: "rgba(37,99,235,0.12)",
               borderWidth: 1,
               borderColor: "rgba(37,99,235,0.2)",
             }}
           >
-            <Text style={{ color: "#1E3A8A", fontSize: 11, fontWeight: "800" }}>Visão geral</Text>
+            <Text style={{ color: "#1E3A8A", fontSize: 12, fontWeight: "800" }}>Visão geral</Text>
           </View>
         </View>
 
         <View
           style={{
-            marginTop: 14,
+            marginTop: 18,
             borderWidth: 1,
             borderColor: "rgba(15,23,42,0.10)",
-            borderRadius: 16,
-            paddingHorizontal: 12,
-            paddingVertical: 10,
-            backgroundColor: "white",
+            borderRadius: 18,
+            paddingHorizontal: 14,
+            paddingVertical: 12,
+            backgroundColor: "rgba(255,255,255,0.92)",
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
@@ -221,23 +216,23 @@ export default function RecordsScreen() {
           </View>
         </View>
 
-        <View style={{ marginTop: 10, flexDirection: "row", gap: 10 }}>
+        <View style={{ marginTop: 14, flexDirection: "row", gap: 10 }}>
           <Pressable
             style={{
               flex: 1,
               borderWidth: 1,
               borderColor: "rgba(15,23,42,0.08)",
-              borderRadius: 14,
-              paddingHorizontal: 12,
-              paddingVertical: 10,
-              backgroundColor: "white",
+              borderRadius: 16,
+              paddingHorizontal: 14,
+              paddingVertical: 12,
+              backgroundColor: "rgba(255,255,255,0.92)",
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
             }}
             onPress={() => setDoctorOpen(true)}
           >
-            <Text style={{ color: colors.muted, fontSize: 12 }}>
+            <Text style={{ color: colors.muted, fontSize: 13 }}>
               {selectedDoctor?.name || selectedDoctor?.email || "Todos os profissionais"}
             </Text>
             <Ionicons name="chevron-down" size={16} color={colors.muted} />
@@ -246,11 +241,11 @@ export default function RecordsScreen() {
           <Pressable
             style={{
               paddingHorizontal: 14,
-              paddingVertical: 10,
-              borderRadius: 12,
+              paddingVertical: 12,
+              borderRadius: 14,
               borderWidth: 1,
               borderColor: "rgba(15,23,42,0.10)",
-              backgroundColor: "white",
+              backgroundColor: "rgba(255,255,255,0.92)",
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -260,13 +255,13 @@ export default function RecordsScreen() {
           </Pressable>
         </View>
 
-        <View style={{ marginTop: 12, flexDirection: "row", gap: 10 }}>
+        <View style={{ marginTop: 16, flexDirection: "row", gap: 10 }}>
           <Pressable
             style={{
               flex: 1,
               paddingHorizontal: 14,
-              paddingVertical: 12,
-              borderRadius: 12,
+              paddingVertical: 14,
+              borderRadius: 14,
               borderWidth: 1,
               borderColor: "rgba(37,99,235,0.45)",
               backgroundColor: "rgba(37,99,235,0.12)",
@@ -274,22 +269,22 @@ export default function RecordsScreen() {
             }}
             onPress={() => setNewOpen(true)}
           >
-            <Text style={{ fontWeight: "900", color: "#1E3A8A" }}>Novo paciente</Text>
+            <Text style={{ fontWeight: "900", color: "#1E3A8A", fontSize: 14 }}>Novo paciente</Text>
           </Pressable>
           <Pressable
             style={{
               flex: 1,
               paddingHorizontal: 14,
-              paddingVertical: 12,
-              borderRadius: 12,
+              paddingVertical: 14,
+              borderRadius: 14,
               borderWidth: 1,
               borderColor: "rgba(15,23,42,0.10)",
-              backgroundColor: "white",
+              backgroundColor: "rgba(255,255,255,0.92)",
               alignItems: "center",
             }}
             onPress={() => setFilterOpen(true)}
           >
-            <Text style={{ fontWeight: "800", color: colors.text }}>Filtros</Text>
+            <Text style={{ fontWeight: "800", color: colors.text, fontSize: 14 }}>Filtros</Text>
           </Pressable>
         </View>
       </View>
@@ -317,13 +312,13 @@ export default function RecordsScreen() {
           </Text>
         </View>
       ) : (
-        <ScrollView contentContainerStyle={{ padding: 16, paddingTop: 6, paddingBottom: 40 }}>
+        <ScrollView contentContainerStyle={{ padding: 24, paddingTop: 10, paddingBottom: 48 }}>
           {patients.length === 0 ? (
             <View
               style={{
-                padding: 20,
-                borderRadius: 16,
-                backgroundColor: "white",
+                padding: 22,
+                borderRadius: 18,
+                backgroundColor: "rgba(255,255,255,0.92)",
                 borderWidth: 1,
                 borderColor: "rgba(15,23,42,0.08)",
               }}
@@ -333,8 +328,8 @@ export default function RecordsScreen() {
           ) : (
             <View
               style={{
-                backgroundColor: "white",
-                borderRadius: 16,
+                backgroundColor: "rgba(255,255,255,0.92)",
+                borderRadius: 18,
                 borderWidth: 1,
                 borderColor: "rgba(15,23,42,0.08)",
                 overflow: "hidden",
@@ -343,7 +338,7 @@ export default function RecordsScreen() {
               <View
                 style={{
                   paddingHorizontal: 14,
-                  paddingVertical: 10,
+                  paddingVertical: 12,
                   backgroundColor: "rgba(15,23,42,0.04)",
                   borderBottomWidth: 1,
                   borderBottomColor: "rgba(15,23,42,0.08)",
@@ -351,8 +346,8 @@ export default function RecordsScreen() {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 11, fontWeight: "800", color: colors.muted, flex: 1 }}>NOME</Text>
-                <Text style={{ fontSize: 11, fontWeight: "800", color: colors.muted, width: 120, textAlign: "right" }}>
+                <Text style={{ fontSize: 12, fontWeight: "800", color: colors.muted, flex: 1 }}>NOME</Text>
+                <Text style={{ fontSize: 12, fontWeight: "800", color: colors.muted, width: 120, textAlign: "right" }}>
                   CADASTRO
                 </Text>
               </View>
@@ -387,10 +382,10 @@ export default function RecordsScreen() {
                   </View>
 
                   <View style={{ flex: 1 }}>
-                    <Text style={{ fontWeight: "900", color: colors.text }} numberOfLines={1}>
+                    <Text style={{ fontWeight: "900", color: colors.text, fontSize: 15 }} numberOfLines={1}>
                       {p.name || p.id}
                     </Text>
-                    <Text style={{ color: colors.muted, marginTop: 2 }} numberOfLines={1}>
+                    <Text style={{ color: colors.muted, marginTop: 4, fontSize: 13 }} numberOfLines={1}>
                       {p.phone || "Sem telefone"}
                     </Text>
                   </View>
