@@ -459,7 +459,7 @@ export default function AgendaScreen() {
     doctorsQ.isLoading || settingsQ.isLoading || appointmentsQ.isLoading || blocksQ.isLoading;
 
   return (
-    <ScreenContainer>
+    <ScreenContainer webScroll={false}>
       <View className="px-6 pt-6">
         <View className="flex-row items-center justify-between mb-4">
           <Text className="text-[20px] font-black text-[#0f172a]">Clínica CRM</Text>

@@ -27,6 +27,11 @@ export interface ScreenContainerProps extends ViewProps {
    * Render the premium background layer.
    */
   withBackground?: boolean;
+  /**
+   * Enable web scroll wrapper (ScrollView). Disable when a screen
+   * already manages its own scrolling (e.g., FlatList).
+   */
+  webScroll?: boolean;
 }
 
 /**
@@ -51,6 +56,7 @@ export function ScreenContainer({
   containerClassName,
   safeAreaClassName,
   withBackground = true,
+  webScroll = true,
   style,
   ...props
 }: ScreenContainerProps) {
@@ -78,7 +84,7 @@ export function ScreenContainer({
         className={cn("flex-1", safeAreaClassName)}
         style={[{ zIndex: 1 }, style]}
       >
-        {isWeb ? (
+        {isWeb && webScroll ? (
           <ScrollView
             className={cn("flex-1", className)}
             contentContainerStyle={{ minHeight: "100%" }}
