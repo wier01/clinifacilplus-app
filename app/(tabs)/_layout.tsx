@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+ï»¿import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { HapticTab } from "@/components/haptic-tab";
@@ -78,8 +78,8 @@ export default function TabLayout() {
         <Tabs.Screen
           name="prontuarios"
           options={{
-            title: "Prontuários",
-            tabBarLabel: "Prontuários",
+            title: "Prontu\u00e1rios",
+            tabBarLabel: "Prontu\u00e1rios",
             tabBarIcon: ({ color }) => <IconSymbol size={28} name="doc.text.fill" color={color} />,
           }}
         />
@@ -95,3 +95,4 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
