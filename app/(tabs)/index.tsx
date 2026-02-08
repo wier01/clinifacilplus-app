@@ -1,7 +1,5 @@
 ﻿// clinica-crm-mobile/app/(tabs)/index.tsx
 import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-native";
-import { Image } from "expo-image";
-import { Asset } from "expo-asset";
 import { useRouter } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import { ScreenContainer } from "@/components/screen-container";
@@ -47,15 +45,9 @@ export default function DashboardScreen() {
   const clinicLocation = [clinic?.city, clinic?.state].filter(Boolean).join(" • ");
   const clinicContact = [clinic?.phone, clinic?.address].filter(Boolean).join(" • ");
   const initials = getInitials(clinic?.name);
-  const backgroundUri = Asset.fromModule(require("../../assets/backgrounds/signup-wave.svg")).uri;
 
   return (
     <ScreenContainer>
-      <Image
-        source={{ uri: backgroundUri }}
-        style={{ position: "absolute", inset: 0, opacity: 0.85 }}
-        contentFit="cover"
-      />
       <ScrollView contentContainerStyle={{ paddingBottom: 56 }}>
         <View style={{ width: "100%", maxWidth: 980, alignSelf: "center" }}>
           <View className="px-6 pt-6">

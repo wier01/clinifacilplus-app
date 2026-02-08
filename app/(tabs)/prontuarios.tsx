@@ -1,8 +1,6 @@
 ﻿// clinica-crm-mobile/app/(tabs)/prontuarios.tsx
 import { useMemo, useState } from "react";
 import { ActivityIndicator, Modal, Pressable, ScrollView, Text, TextInput, View } from "react-native";
-import { Image } from "expo-image";
-import { Asset } from "expo-asset";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -78,7 +76,6 @@ export default function RecordsScreen() {
   const [formBirth, setFormBirth] = useState("");
   const [formSex, setFormSex] = useState<"M" | "F" | "O" | "">("");
   const [formError, setFormError] = useState<string | null>(null);
-  const backgroundUri = Asset.fromModule(require("../../assets/backgrounds/signup-wave.svg")).uri;
 
   const patientsQ = useQuery({
     queryKey: ["patients", q],
@@ -165,11 +162,6 @@ export default function RecordsScreen() {
 
   return (
     <ScreenContainer>
-      <Image
-        source={{ uri: backgroundUri }}
-        style={{ position: "absolute", inset: 0, opacity: 0.85 }}
-        contentFit="cover"
-      />
 
       <View style={{ padding: 24, paddingBottom: 10 }}>
         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>

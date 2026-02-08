@@ -1,8 +1,6 @@
 ﻿// clinica-crm-mobile/app/(tabs)/agenda.tsx
 import { useMemo, useState } from "react";
 import { ActivityIndicator, FlatList, Modal, Pressable, Text, TextInput, View } from "react-native";
-import { Image } from "expo-image";
-import { Asset } from "expo-asset";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ScreenContainer } from "@/components/screen-container";
 import { IconSymbol } from "@/components/ui/icon-symbol";
@@ -153,7 +151,6 @@ export default function AgendaScreen() {
   const [blockReason, setBlockReason] = useState("Almoço");
 
   const [insuranceDays, setInsuranceDays] = useState<Record<number, string | null>>({});
-  const backgroundUri = Asset.fromModule(require("../../assets/backgrounds/signup-wave.svg")).uri;
 
   const doctorsQ = useQuery({
     queryKey: ["doctors"],
@@ -463,11 +460,6 @@ export default function AgendaScreen() {
 
   return (
     <ScreenContainer>
-      <Image
-        source={{ uri: backgroundUri }}
-        style={{ position: "absolute", inset: 0, opacity: 0.85 }}
-        contentFit="cover"
-      />
       <View className="px-6 pt-6">
         <View className="flex-row items-center justify-between mb-4">
           <Text className="text-[20px] font-black text-[#0f172a]">Clínica CRM</Text>
