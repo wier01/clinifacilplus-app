@@ -31,9 +31,13 @@ export async function getApiBaseUrl(): Promise<string> {
         base.includes("://localhost:8081") ||
         base.includes("://127.0.0.1:8081") ||
         base.includes("://localhost:19006") ||
+        base.includes("://localhost:3000") ||
+        base.includes("://127.0.0.1:3000") ||
         base.includes("localhost:8081") ||
         base.includes("127.0.0.1:8081") ||
-        base.includes("localhost:19006");
+        base.includes("localhost:19006") ||
+        base.includes("localhost:3000") ||
+        base.includes("127.0.0.1:3000");
 
       const hasScheme = /^https?:\/\//i.test(base);
 
