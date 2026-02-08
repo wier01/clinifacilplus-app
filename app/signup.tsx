@@ -1,6 +1,6 @@
 ﻿// clinica-crm-mobile/app/signup.tsx
 import { useState } from "react";
-import { Alert, Pressable, ScrollView, Text, TextInput, View, ActivityIndicator } from "react-native";
+import { Alert, Pressable, ScrollView, Text, TextInput, View, ActivityIndicator, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
@@ -28,15 +28,20 @@ export default function SignupScreen() {
   const [postalCode, setPostalCode] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
+  const [signupError, setSignupError] = useState<string | null>(null);
 
   async function onSignup() {
     if (!clinicName.trim() || !adminName.trim() || !email.trim() || !password.trim()) {
-      Alert.alert("Campos obrigatórios", "Informe nome da clínica, seu nome, email e senha.");
+      const msg = "Informe nome da clínica, seu nome, email e senha.";
+      setSignupError(msg);
+      if (Platform.OS === "web") window.alert(msg);
+      else Alert.alert("Campos obrigatórios", msg);
       return;
     }
 
     try {
       setLoading(true);
+      setSignupError(null);
       const res = await apiCall<any>("/auth/signup", {
         method: "POST",
         body: {
@@ -60,10 +65,17 @@ export default function SignupScreen() {
         await auth.refresh();
       }
 
-      Alert.alert("Conta criada", "Sua clínica foi criada com sucesso.");
+      if (Platform.OS === "web") {
+        window.alert("Conta criada com sucesso.");
+      } else {
+        Alert.alert("Conta criada", "Sua clínica foi criada com sucesso.");
+      }
       router.replace("/onboarding");
     } catch (e: any) {
-      Alert.alert("Erro", e?.message ?? String(e));
+      const msg = e?.message ?? String(e);
+      setSignupError(msg);
+      if (Platform.OS === "web") window.alert(msg);
+      else Alert.alert("Erro", msg);
     } finally {
       setLoading(false);
     }
@@ -264,6 +276,13 @@ export default function SignupScreen() {
               style={{ paddingVertical: 24 }}
               textStyle={{ fontSize: 31 }}
             />
+            {signupError ? (
+              <View className="mt-4 rounded-2xl px-5 py-4" style={{ backgroundColor: "rgba(239,68,68,0.12)", borderWidth: 1, borderColor: "rgba(239,68,68,0.35)" }}>
+                <Text style={{ color: "#7F1D1D", fontSize: 24, lineHeight: 36, fontWeight: "700" }}>
+                  {signupError}
+                </Text>
+              </View>
+            ) : null}
           </View>
 
           <View className="mt-8 mx-6">
