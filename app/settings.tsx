@@ -229,6 +229,21 @@ export default function SettingsScreen({ embedded = false }: { embedded?: boolea
     Alert.alert("OK", "Token removido.");
   }
 
+  async function onLogout() {
+    Alert.alert("Sair", "Deseja sair da conta?", [
+      { text: "Cancelar", style: "cancel" },
+      {
+        text: "Sair",
+        style: "destructive",
+        onPress: async () => {
+          await clearAuthToken();
+          await auth.refresh();
+          router.replace("/login");
+        },
+      },
+    ]);
+  }
+
   async function onResetBaseUrl() {
     await clearApiBaseUrl();
     const b = await getApiBaseUrl();
@@ -473,6 +488,16 @@ export default function SettingsScreen({ embedded = false }: { embedded?: boolea
           variant="primary"
           onPress={onSave}
           disabled={loading}
+          style={{ paddingVertical: 14 }}
+          textStyle={{ fontSize: 15 }}
+        />
+      </View>
+
+      <View className="mt-3">
+        <ModernButton
+          title="Sair da conta"
+          variant="dark"
+          onPress={onLogout}
           style={{ paddingVertical: 14 }}
           textStyle={{ fontSize: 15 }}
         />
