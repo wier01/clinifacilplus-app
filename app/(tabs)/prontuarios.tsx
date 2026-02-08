@@ -164,7 +164,7 @@ export default function RecordsScreen() {
   }
 
   return (
-    <ScreenContainer className="bg-[#F2F7FB]">
+    <ScreenContainer>
       <Image
         source={{ uri: backgroundUri }}
         style={{ position: "absolute", inset: 0, opacity: 0.85 }}

@@ -87,7 +87,7 @@ export default function PlanSelectScreen() {
   }
 
   return (
-    <ScreenContainer className="bg-[#F7F8FB]">
+    <ScreenContainer>
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
         <View style={{ marginBottom: 12 }}>
           <Text style={{ fontSize: 22, fontWeight: "900", color: colors.text }}>Assinatura</Text>

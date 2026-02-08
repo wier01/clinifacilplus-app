@@ -139,7 +139,7 @@ export default function PatientDetailScreen() {
   const age = ageFromBirth(patient?.birth_date);
 
   return (
-    <ScreenContainer className="bg-[#F4F6F8]">
+    <ScreenContainer>
       <View
         pointerEvents="none"
         style={{

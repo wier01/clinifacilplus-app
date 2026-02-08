@@ -1,8 +1,6 @@
 ﻿// clinica-crm-mobile/app/signup.tsx
 import { useState } from "react";
 import { Alert, Pressable, ScrollView, Text, TextInput, View, ActivityIndicator } from "react-native";
-import { Image } from "expo-image";
-import { Asset } from "expo-asset";
 import { useRouter } from "expo-router";
 import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
@@ -16,7 +14,6 @@ export default function SignupScreen() {
   const auth = useAuth();
   const containerStyle = { width: "100%", maxWidth: 720, alignSelf: "center" as const };
   const primary = colors.primary;
-  const backgroundUri = Asset.fromModule(require("../assets/backgrounds/signup-wave.svg")).uri;
 
   const [clinicName, setClinicName] = useState("");
   const [adminName, setAdminName] = useState("");
@@ -74,20 +71,12 @@ export default function SignupScreen() {
 
   return (
     <ScreenContainer edges={["top", "left", "right", "bottom"]}>
-      <View style={{ flex: 1, backgroundColor: colors.background }}>
-        <Image
-          source={{ uri: backgroundUri }}
-          contentFit="cover"
-          style={{ position: "absolute", inset: 0, opacity: 0.9 }}
-          pointerEvents="none"
-        />
-
-        <ScrollView
-          style={{ flex: 1 }}
-          contentContainerStyle={{ paddingBottom: 240, paddingTop: 64, paddingHorizontal: 8 }}
-          keyboardShouldPersistTaps="handled"
-        >
-          <View style={containerStyle}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 240, paddingTop: 64, paddingHorizontal: 8 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={containerStyle}>
           <View
             className="mx-6 rounded-3xl p-10 mb-8"
             style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}
@@ -286,7 +275,6 @@ export default function SignupScreen() {
           </View>
         </View>
       </ScrollView>
-    </View>
     </ScreenContainer>
   );
 }

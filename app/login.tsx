@@ -1,8 +1,6 @@
 ﻿// clinica-crm-mobile/app/login.tsx
 import { useState } from "react";
 import { Alert, Pressable, ScrollView, Text, TextInput, View, ActivityIndicator } from "react-native";
-import { Image } from "expo-image";
-import { Asset } from "expo-asset";
 import { useRouter } from "expo-router";
 import { ScreenContainer } from "@/components/screen-container";
 import { useColors } from "@/hooks/use-colors";
@@ -15,7 +13,6 @@ export default function LoginScreen() {
   const router = useRouter();
   const auth = useAuth();
   const containerStyle = { width: "100%", maxWidth: 720, alignSelf: "center" as const };
-  const backgroundUri = Asset.fromModule(require("../assets/backgrounds/signup-wave.svg")).uri;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,21 +46,13 @@ export default function LoginScreen() {
 
   return (
     <ScreenContainer edges={["top", "left", "right", "bottom"]}>
-      <View style={{ flex: 1, backgroundColor: colors.background }}>
-        <Image
-          source={{ uri: backgroundUri }}
-          contentFit="cover"
-          style={{ position: "absolute", inset: 0, opacity: 0.9 }}
-          pointerEvents="none"
-        />
-
-        <ScrollView
-          style={{ flex: 1 }}
-          contentContainerStyle={{ paddingBottom: 200, paddingTop: 64, paddingHorizontal: 8 }}
-          keyboardShouldPersistTaps="handled"
-        >
-          <View style={containerStyle}>
-            <View className="mx-6 rounded-3xl p-10 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 200, paddingTop: 64, paddingHorizontal: 8 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={containerStyle}>
+          <View className="mx-6 rounded-3xl p-10 mb-10" style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }}>
               <View className="flex-row items-center mb-4">
                 <Text className="text-[44px] font-extrabold flex-1" style={{ color: colors.text, lineHeight: 62, fontWeight: "800" }}>
                   Entrar
@@ -115,17 +104,16 @@ export default function LoginScreen() {
               </View>
             </View>
 
-            {loading && (
-              <View className="flex-row items-center justify-center">
-                <ActivityIndicator />
-                <Text className="ml-3 text-[24px]" style={{ color: colors.muted }}>
-                  Validando credenciais…
-                </Text>
-              </View>
-            )}
-          </View>
-        </ScrollView>
-      </View>
+          {loading && (
+            <View className="flex-row items-center justify-center">
+              <ActivityIndicator />
+              <Text className="ml-3 text-[24px]" style={{ color: colors.muted }}>
+                Validando credenciais…
+              </Text>
+            </View>
+          )}
+        </View>
+      </ScrollView>
     </ScreenContainer>
   );
 }

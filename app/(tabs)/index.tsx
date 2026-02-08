@@ -50,7 +50,7 @@ export default function DashboardScreen() {
   const backgroundUri = Asset.fromModule(require("../../assets/backgrounds/signup-wave.svg")).uri;
 
   return (
-    <ScreenContainer className="bg-[#F2F7FB]">
+    <ScreenContainer>
       <Image
         source={{ uri: backgroundUri }}
         style={{ position: "absolute", inset: 0, opacity: 0.85 }}

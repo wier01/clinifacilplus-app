@@ -1264,7 +1264,7 @@ export default function InboxScreen() {
   );
 
   return (
-    <ScreenContainer className="bg-[#F2F5F7]">
+    <ScreenContainer>
       <View
         pointerEvents="none"
         style={{

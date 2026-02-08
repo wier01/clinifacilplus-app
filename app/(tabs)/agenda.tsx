@@ -462,7 +462,7 @@ export default function AgendaScreen() {
     doctorsQ.isLoading || settingsQ.isLoading || appointmentsQ.isLoading || blocksQ.isLoading;
 
   return (
-    <ScreenContainer className="bg-[#F2F7FB]">
+    <ScreenContainer>
       <Image
         source={{ uri: backgroundUri }}
         style={{ position: "absolute", inset: 0, opacity: 0.85 }}

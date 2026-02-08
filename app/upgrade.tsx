@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "react-native";
+Ôªøimport { ScrollView, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import { ScreenContainer } from "@/components/screen-container";
@@ -23,7 +23,7 @@ export default function UpgradeScreen() {
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
         <Text style={{ fontSize: 22, fontWeight: "900", color: colors.text }}>Atualize seu plano</Text>
         <Text style={{ marginTop: 4, color: colors.muted, fontSize: 12 }}>
-          Este recurso est· disponÌvel em planos superiores.
+          Este recurso est√° dispon√≠vel em planos superiores.
         </Text>
 
         <View
@@ -38,7 +38,7 @@ export default function UpgradeScreen() {
         >
           <Text style={{ fontWeight: "900", color: colors.text }}>Quer liberar mais recursos?</Text>
           <Text style={{ marginTop: 6, color: colors.muted, fontSize: 12 }}>
-            Compare os planos e escolha o melhor para sua clÌnica.
+            Compare os planos e escolha o melhor para sua cl√≠nica.
           </Text>
 
           <View style={{ marginTop: 10 }}>
@@ -72,3 +72,4 @@ export default function UpgradeScreen() {
     </ScreenContainer>
   );
 }
+

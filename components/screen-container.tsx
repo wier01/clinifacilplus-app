@@ -1,5 +1,7 @@
 import { View, type ViewProps } from "react-native";
 import { SafeAreaView, type Edge } from "react-native-safe-area-context";
+import { Image } from "expo-image";
+import { Asset } from "expo-asset";
 
 import { cn } from "@/lib/utils";
 
@@ -21,6 +23,10 @@ export interface ScreenContainerProps extends ViewProps {
    * Additional className for the SafeAreaView (content layer).
    */
   safeAreaClassName?: string;
+  /**
+   * Render the premium background layer.
+   */
+  withBackground?: boolean;
 }
 
 /**
@@ -44,18 +50,27 @@ export function ScreenContainer({
   className,
   containerClassName,
   safeAreaClassName,
+  withBackground = true,
   style,
   ...props
 }: ScreenContainerProps) {
+  const backgroundUri = Asset.fromModule(require("../assets/backgrounds/signup-wave.svg")).uri;
   return (
     <View
       className={cn(
         "flex-1",
-        "bg-background",
+        "bg-[#F2F7FB]",
         containerClassName
       )}
       {...props}
     >
+      {withBackground ? (
+        <Image
+          source={{ uri: backgroundUri }}
+          style={{ position: "absolute", inset: 0, opacity: 0.85 }}
+          contentFit="cover"
+        />
+      ) : null}
       <SafeAreaView
         edges={edges}
         className={cn("flex-1", safeAreaClassName)}
